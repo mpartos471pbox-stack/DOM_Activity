@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess the Country</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  
+  <div class="nameplate">
+    NIKKI MARIE F. PAMADA<br>
+    BSIT 2D
+  </div>
+  
+  <div class="container">
+    <h2 class="title">Guess the country</h2>
+    <i><p class="hint">The word starts with 'A'</p></i>
+    <p class="attempts">5 Attempts</p>
+
+    <div id="feedbackMessage" class="feedback-message"></div>
+
+    <div class="input-section">
+      <input type="text" id="guessInput" placeholder="Enter your guess">
+      <button class="submit-btn" onclick="submitGuess()">Submit</button>
+      <button class="restart-btn" onclick="restartGame()">Restart</button>
+    </div>
+
+    <div class="guesses-container">
+      <h3>Your Guesses:</h3>
+      <ul id="guessesList"></ul>
+    </div>
+  </div>
+
+</body>
+</html>

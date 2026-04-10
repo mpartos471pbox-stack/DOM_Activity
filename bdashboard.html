@@ -1,0 +1,172 @@
+<!-- README.txt
+
+PROJECT TITLE:
+Browser Environment Dashboard
+
+----------------------------------
+
+PROJECT DESCRIPTION:
+
+The Browser Environment Dashboard is a simple web page
+created using HTML, CSS, and JavaScript.
+
+This project shows how JavaScript can read information
+from the browser and control some browser features.
+
+It uses built-in browser objects like:
+- navigator
+- screen
+- document
+- location
+- history
+- window
+
+WHAT THIS PROJECT CAN DO:
+
+1. Show Student Profile
+   - Displays personal and course information at the top of the page.
+
+2. Show Browser Information
+   - Browser name and version
+   - Operating system
+   - If Java is enabled
+   - Screen size
+   - Available screen size
+   - Color depth
+
+3. Show Page Information
+   - Current website URL
+   - Hostname
+   - Current page title
+   - Allows the user to change the page title
+
+4. Navigation Controls
+   - Reload the page
+   - Go to another website
+   - Go back to the previous page
+   - Go forward to the next page
+
+5. Dynamic Background Color
+   - Blue for small screens (mobile)
+   - Green for medium screens (tablet)
+   - Orange for large screens (desktop)
+   - The color changes when resizing the browser window
+
+FILES INCLUDED:
+
+1. index.html
+   - Main homepage
+   - Shows student profile
+   - Contains activity links
+
+2. browser_dashboard.html
+   - Main dashboard page
+   - Contains all browser information and controls
+
+HOW TO USE:
+
+1. Open index.html in a web browser.
+2. Click on "Browser Environment Dashboard".
+3. Try the buttons and resize the window to see changes.
+
+PURPOSE OF THIS PROJECT:
+
+This project helps students understand:
+- How browsers work
+- How JavaScript interacts with the browser
+- How to use browser objects
+- How to change webpage content dynamically
+
+END OF FILE -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         transition: background-color 0.5s ease;
+      }
+
+      header {
+         background-color: #F7F8F0;
+         color: rgb(5, 5, 5);
+         padding: 20px;
+      }
+
+      section {
+         padding: 20px;
+         margin: 10px;
+         border-radius: 8px;
+         background-color: rgba(255,255,255,0.9);
+      }
+
+      button {
+         padding: 8px 12px;
+         margin: 5px 0;
+         cursor: pointer;
+      }
+
+      h2 {
+         border-bottom: 2px solid #444;
+      }
+   </style>
+
+   <link rel="stylesheet" href="style.css">
+    <h1 class="StudentProfile">STUDENT PROFILE</h1>
+     <div class="container">
+      <img class="img-nikki" src="/images/nikki.png.jpg" style="display: block; margin-left: 400px; width: 350px; height: 350px;">
+      <div class="profile-info">
+        <p><strong>Complete Name:</strong> Nikki Marie Follero Pamada</p>
+        <p><strong>Complete Name:</strong> Nikki Marie Follero Pamada</p>
+        <p><strong>Sex:</strong> Female</p>
+        <p><strong>Address:</strong> Zone 2, Pugay, San Jose, Camarines Sur</p>
+        <p><strong>Course, Year and Section:</strong> BSIT 2D</p>
+        <p><strong>Name of School:</strong> Partido State University</p>
+        <p><strong>Semester and Academic Year:</strong> 2nd Semester 2025-2026</p>
+        <p><strong>Subject Code and Title:</strong> PF2 & Event-Driven Programming</p>
+        <p><strong>Instructor:</strong> Arjay F. Abio</p>
+      </div>
+   </div>
+
+<section>
+    <h2 class="browserInfo">PART A: BROWSER INFORMATION</h2>
+    <div id="browserInfo"></div>
+    <p id="browserName"></p>
+    <p id="browserVersion"></p>
+    <p id="browserPlatform"></p>
+    <p id="browserJavaEnabled"></p>
+    <p id="screenResolution"></p>
+    <p id="availableScreenSize"></p>
+    <p id="browserColorDepth"></p>
+
+     <script src="script.js"></script>
+</section>
+
+<section>
+    <h2 class="PageInfo">PART B: PAGE INFORMATION & CONTROLS</h2>
+    <p><strong>Current URL:</strong> <span id="currentURL"></span></p>
+    <p><strong>Hostname:</strong> <span id="hostname"></span></p>
+    <p><strong>Page Title:</strong> <span id="pageTitle"></span></p>
+
+    <button class="change-title-btn" onclick="changeTitle()">Change Page Title</button>
+    
+    <script src="script.js"></script>
+</section>
+
+<section>
+    <h2 class="NavigationControls">PART C: NAVIGATION CONTROLS</h2>
+    <button class="reload-btn" onclick="reloadPage()">Reload Page</button>
+    <button class="redirect" onclick="redirectPage()">Google.com</button>
+    <button class="back-btn" onclick="goBack()">Back</button>
+    <button class="forward-btn" onclick="goForward()">Forward</button>
+</section>
+
+</body>
+</html>

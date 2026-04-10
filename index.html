@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive DOM Traversal</title>
+
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.activity-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.btn { 
+  text-decoration: none;
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #FAACBF;
+  color: rgb(4, 3, 3);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+  background-color: #e08aa4;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+  </style>
+  
+  <header>
+  <h2>PROFILE INFORMATION</h2>
+  <p><strong>Complete Name:</strong> Nikki Marie F. Pamada</p>
+  <p><strong>Sex:</strong> Female</p>
+  <p><strong>Address:</strong> Pugay, San Jose, Camarines Sur</p>
+  <p><strong>Course, Year and Section:</strong> BSIT 2D</p>
+  <p><strong>Name of School:</strong> Partido State University</p>
+  <p><strong>Semester and Academic Year:</strong> 2nd Semester & 2025 - 2026</p>
+  <p><strong>Subject Code and Title:</strong> PF2 Event-Driven Programming</p>
+  <p><strong>Name of Subject Instructor:</strong> Mr. Arjay Abio</p>
+</header>
+  
+  <h2>MY ACTIVITIES</h2>
+
+<div class="activity-buttons">
+  <a href="dom_traversal.html" class="btn">Interactive DOM Traversal and Manipulation</a>
+  <a href="../dashboard/bdashboard.html" class="btn">Browser Dashboard</a>
+  <a href="../guessgame/game_index.html" class="btn">Guess Game</a>
+  <a href="../taskify/index1.html" class="btn">Taskify</a>
+</div>
+  
+</body>
+</html>

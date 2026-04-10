@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive DOM Traversal</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+header {
+  border-bottom: 2px solid #000;
+  margin-bottom: 20px;
+}
+
+.node {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.grandparent {
+  background-color: #F2EAE0;
+}
+
+.parent {
+  background-color: #B4D3D9;
+}
+
+.child {
+  background-color: #9B8EC7;
+}
+
+.highlight {
+  outline: 3px solid black;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+  #controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+#controls button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+#controls button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+/* Active (click) effect */
+#controls button:active {
+  transform: scale(0.80);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: Different colors per action */
+#controls button:nth-child(1) { background: #BDA6CE; }  
+#controls button:nth-child(2) { background: #BDA6CE; }   
+#controls button:nth-child(3) { background: #BDA6CE; }   
+#controls button:nth-child(4) { background: #BDA6CE; }   
+#controls button:nth-child(5) { background: #BDA6CE; }
+#controls button:nth-child(6) { background: #BDA6CE; }   
+
+/* Hover override for colored buttons */
+#controls button:nth-child(6):hover {
+  background: #ff4b2b;
+}
+  
+</style>
+</head>
+<body>
+
+<header>
+  <h2>PROFILE INFORMATION</h2>
+  <p><strong>Complete Name:</strong> Nikki Marie F. Pamada</p>
+  <p><strong>Sex:</strong> Female</p>
+  <p><strong>Address:</strong> Pugay, San Jose, Camarines Sur</p>
+  <p><strong>Course, Year and Section:</strong> BSIT 2D</p>
+  <p><strong>Name of School:</strong> Partido State University</p>
+  <p><strong>Semester and Academic Year:</strong> 2nd Semester & 2025 - 2026</p>
+  <p><strong>Subject Code and Title:</strong> PF2 Event-Driven Programming</p>
+  <p><strong>Name of Subject Instructor:</strong> Mr. Arjay Abio</p>
+</header>
+  
+  <div id="tree" class="node grandparent">
+  Grandparent
+  <div class="node parent">
+    Parent 1
+    <div class="node child">Child 1</div>
+    <div class="node child">Child 2</div>
+  </div>
+  <div class="node parent">
+    Parent 2
+    <div class="node child">Child 1</div>
+    <div class="node child">Child 2</div>
+  </div> 
+</div>
+  
+  <div id="controls">
+  <button onclick="traverseUp()">Up</button>
+  <button onclick="traverseDown()">Down</button>
+  <button onclick="nextSibling()">Next</button>
+  <button onclick="prevSibling()">Previous</button>
+  <button onclick="addChild()">Add Child</button>
+  <button onclick="deleteNode()">Delete</button>
+</div>
+
+<script>
+let selected = null;
+
+// Select node
+function selectNode(e) {
+  e.stopPropagation();
+
+  if (selected) {
+    selected.classList.remove('highlight');
+  }
+
+  selected = e.currentTarget;
+  selected.classList.add('highlight');
+}
+
+// Add click listeners
+function addListeners() {
+  const nodes = document.querySelectorAll('.node');
+  nodes.forEach(node => {
+    node.addEventListener('click', selectNode);
+  });
+}
+
+addListeners();
+
+// Traversal functions
+function traverseUp() {
+  if (!selected || !selected.parentElement.classList.contains('node')) return;
+  selected.click();
+  selected.parentElement.click();
+}
+
+function traverseDown() {
+  if (!selected) return;
+  const child = selected.querySelector(':scope > .node');
+  if (child) child.click();
+}
+
+function nextSibling() {
+  if (!selected) return;
+  const next = selected.nextElementSibling;
+  if (next) next.click();
+}
+
+function prevSibling() {
+  if (!selected) return;
+  const prev = selected.previousElementSibling;
+  if (prev) prev.click();
+}
+
+// Add child
+function addChild() {
+  if (!selected) return;
+
+  if (selected.classList.contains('child')) {
+    alert('Cannot add child to a child node');
+    return;
+  }
+
+  if (selected.classList.contains('grandparent')) {
+    const parent = document.createElement('div');
+    parent.className = 'node parent';
+    parent.textContent = 'New Parent';
+
+    const child1 = document.createElement('div');
+    child1.className = 'node child';
+    child1.textContent = 'Child 1';
+
+    const child2 = document.createElement('div');
+    child2.className = 'node child';
+    child2.textContent = 'Child 2';
+
+    parent.appendChild(child1);
+    parent.appendChild(child2);
+    selected.appendChild(parent);
+  } else if (selected.classList.contains('parent')) {
+    const child = document.createElement('div');
+    child.className = 'node child';
+    child.textContent = 'New Child';
+    selected.appendChild(child);
+  }
+
+  addListeners();
+}
+
+// Delete node
+function deleteNode() {
+  if (!selected) return;
+
+  if (selected.classList.contains('grandparent')) {
+    alert('Cannot delete the grandparent node');
+    return;
+  }
+
+  const parent = selected.parentElement;
+  selected.remove();
+  selected = null;
+
+  if (parent.classList.contains('node')) {
+    parent.classList.add('highlight');
+    selected = parent;
+  }
+}
+</script>
+
+</body>
+</html>
